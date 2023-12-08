@@ -3,6 +3,8 @@
 # dependencies
 /node_modules
 /.pnp
+/.idea
+/.storybook
 .pnp.js
 
 # testing
@@ -21,6 +23,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-/.idea
-/.storybook
