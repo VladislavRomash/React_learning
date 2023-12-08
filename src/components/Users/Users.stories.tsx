@@ -1,10 +1,10 @@
 import {Meta} from '@storybook/react';
-import {UserList} from './UserList';
 import {useReducer} from 'react';
 import {v1} from 'uuid';
+import {UsersComponent} from './UsersComponent';
 
-const meta: Meta<typeof UserList> = {
-    component: UserList
+const meta: Meta<typeof UsersComponent> = {
+    component: UsersComponent
 }
 export default meta
 
@@ -58,7 +58,7 @@ const reducerSwitcher = (state: boolean, action: { type: 'SWITCHER' }) => {
     }
 }
 
-export const UsersList = () => {
+export const ListOfUser = () => {
 
     const [data, dispatch] = useReducer(reducerUser, users)
     const [selector, dispatchSelector] = useReducer(reducerSwitcher, false)
@@ -67,8 +67,8 @@ export const UsersList = () => {
     const deleteUser = (id: string) => dispatch(deleteUserAC(id))
 
     return selector
-        ? <UserList users={data}
-                    onClickCallbackAdd={addUser}
-                    onClickCallbackDelete={deleteUser}/>
+        ? <UsersComponent users={data}
+                          onClickCallbackAdd={addUser}
+                          onClickCallbackDelete={deleteUser}/>
         : <button onClick={() => dispatchSelector({type: 'SWITCHER'})}>show</button>
 }

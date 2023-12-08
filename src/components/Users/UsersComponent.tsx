@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import {UsersType} from './UsersList.stories';
+import {UsersType} from './Users.stories';
 
 type  PropsType = {
     users: UsersType[]
@@ -7,7 +7,7 @@ type  PropsType = {
     onClickCallbackDelete: (id: string) => void
 }
 
-export const UserList: React.FC<PropsType> = (props) => {
+export const UsersComponent: React.FC<PropsType> = (props) => {
 
     const {users, onClickCallbackAdd, onClickCallbackDelete} = props
 
