@@ -8,7 +8,7 @@ type PropsType = {
 }
 
 export const MemoComponent: React.FC<PropsType> = (props) => {
-    console.log('___')
+    console.log('ReactMemo component')
 
     const {one, two} = props
 
