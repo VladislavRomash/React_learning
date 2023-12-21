@@ -11,7 +11,7 @@ export const UseMemoHookComponent: FC<Props> = () => {
         let temp = 1
         for (let i = 1; i <= a; i++) {
             let num = 0
-            while (num < 10000000) {
+            while (num < 100000000) {
                 num++
                 Math.random()
             }
