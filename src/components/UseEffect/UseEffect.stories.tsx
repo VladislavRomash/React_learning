@@ -66,24 +66,3 @@ export const SetIntervalEffect = () => {
         </div>
     )
 }
-
-export const Clock = () => {
-
-    const [hoursData, setHours] = useState(new Date().getHours())
-    const [minutesData, setMinutes] = useState(new Date().getMinutes())
-    const [secondsData, setSeconds] = useState(new Date().getSeconds())
-
-    useEffect(() => {
-        setInterval(() => {
-            setHours(prevState => new Date().getHours())
-            setMinutes(prevState => new Date().getMinutes())
-            setSeconds(prevState => new Date().getSeconds())
-        }, 1000)
-    }, []);
-
-    return (
-        <div>
-            {`${hoursData} : ${minutesData} : ${secondsData}`}
-        </div>
-    )
-}
