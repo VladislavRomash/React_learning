@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import s from './Clock.module.css'
 
 export const Clock = () => {
     const [date, setDate] = useState(new Date())
@@ -22,7 +23,7 @@ export const Clock = () => {
     const digits = (num: number) => num < 10 ? '0' + num : num
 
     return (
-        <div>
+        <div className={s.main}>
             {`${digits(date.getHours())} : ${digits(date.getMinutes())} : ${digits(date.getSeconds())}`}
         </div>
     )

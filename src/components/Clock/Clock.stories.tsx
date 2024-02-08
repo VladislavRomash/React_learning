@@ -1,5 +1,7 @@
 import {Meta} from '@storybook/react';
 import {Clock} from './Clock';
+import {AnalogClock} from './AnalogClock';
+import {useState} from 'react';
 
 const meta: Meta<typeof Clock> = {
     component: Clock
@@ -8,4 +10,23 @@ const meta: Meta<typeof Clock> = {
 export default meta
 
 
-export const DigitalClock = () => <Clock/>
+export const Digital = () => <Clock/>
+export const Analog = () => <AnalogClock/>
+
+export const Change = () => {
+
+    const [changer, setChanger] = useState(true)
+
+    return (
+        <>
+            <div>
+                <button onClick={() => setChanger(!changer)}>CHANGE</button>
+            </div>
+            {
+                changer
+                    ? <AnalogClock/>
+                    : <Clock/>
+            }
+        </>
+    )
+}
