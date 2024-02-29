@@ -1,6 +1,7 @@
-import {Meta} from '@storybook/react';
+import {Meta, StoryFn} from '@storybook/react';
 import {UseEffectComponent} from './UseEffectComponent';
 import React, {useEffect, useState} from 'react';
+
 
 const meta: Meta<typeof UseEffectComponent> = {
     component: UseEffectComponent
@@ -27,10 +28,13 @@ export const SetTimeoutEffect = () => {
     const [fake, setFake] = useState(0)
 
     useEffect(() => {
-        setTimeout(() => {
+        const timeoutID = setTimeout(() => {
             console.log('setTimeout')
             document.title = counter.toString()
-        }, 1000)
+        }, 5000)
+        return () => {
+            clearTimeout(timeoutID)
+        }
     }, [counter])
 
     return (
@@ -54,15 +58,69 @@ export const SetIntervalEffect = () => {
     useEffect(() => {
         console.log('effect')
 
-        setInterval(() => {
+        const intervalID = setInterval(() => {
+            console.log('setInterval')
             setCounter((prevState) => prevState + 1)
         }, 1000)
+
+        return () => {
+            clearInterval(intervalID)
+        }
 
     }, [])
 
     return (
         <div>
             counter - {counter}
+        </div>
+    )
+}
+export const ResetFunctionEffect: StoryFn = () => {
+    const [count, setCount] = useState(5)
+
+    console.log('ResetFunctionEffect - ' + count)
+
+    useEffect(() => {
+        console.log('useEffect - ' + count)
+
+        return () => {
+            console.log('Reset effect - ' + count)
+        }
+    }, [count]);
+
+    const onClickHandler = () => {
+        setCount(count + 1)
+    }
+
+    return (
+        <div>
+            {count}
+            <button onClick={onClickHandler}>click</button>
+        </div>
+    )
+}
+export const PressKey: StoryFn = () => {
+
+    const [key, setKey] = useState('')
+
+    useEffect(() => {
+        const callback = (e: KeyboardEvent) => {
+            console.log(key)
+            setKey(key + e.key)
+        }
+
+        window.addEventListener('keypress', callback)
+
+        console.log(key)
+
+        return () => {
+            window.removeEventListener('keypress', callback)
+        }
+    }, [key]);
+
+    return (
+        <div>
+            Key: {key}
         </div>
     )
 }
